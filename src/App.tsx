@@ -12,6 +12,9 @@ import Footer from '@/components/Footer';
 function App() {
     return (
         <main className="min-h-screen">
+            {/* Cyber Scan Line Effect */}
+            <div className="scan-line"></div>
+
             <Navbar />
             <Hero />
             <About />

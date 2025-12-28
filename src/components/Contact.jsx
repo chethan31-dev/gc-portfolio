@@ -2,86 +2,119 @@ import React from 'react';
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function Contact() {
+	const contactMethods = [
+		{
+			icon: <FaEnvelope className="w-6 h-6" />,
+			title: 'Email',
+			value: 'chethanmudhiraj3102@gmail.com',
+			href: 'mailto:chethanmudhiraj3102@gmail.com',
+			gradient: 'from-neon-cyan-500 to-neon-blue-600',
+			hoverColor: 'cyan',
+		},
+		{
+			icon: <FaPhone className="w-6 h-6" />,
+			title: 'Phone',
+			value: '7032395245',
+			href: 'tel:7032395245',
+			gradient: 'from-green-500 to-emerald-600',
+			hoverColor: 'green',
+		},
+		{
+			icon: <FaLinkedin className="w-6 h-6" />,
+			title: 'LinkedIn',
+			value: 'linkedin.com/in/chethanmca2025',
+			href: 'https://linkedin.com/in/chethanmca2025',
+			gradient: 'from-neon-blue-500 to-neon-blue-700',
+			hoverColor: 'blue',
+		},
+		{
+			icon: <FaGithub className="w-6 h-6" />,
+			title: 'GitHub',
+			value: 'github.com/chethan31-dev',
+			href: 'https://github.com/chethan31-dev',
+			gradient: 'from-neon-purple-500 to-neon-pink-600',
+			hoverColor: 'purple',
+		},
+	];
+
 	return (
-		<section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 relative overflow-hidden">
-			{/* Animated Background */}
+		<section id="contact" className="py-20 bg-cyber-dark relative overflow-hidden">
+			{/* Animated Background Orbs */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				<div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl top-0 right-0 animate-pulse"></div>
-				<div className="absolute w-96 h-96 bg-purple-500/10 rounded-full blur-3xl bottom-0 left-0 animate-pulse"></div>
+				<div className="absolute w-96 h-96 bg-neon-cyan-500/10 rounded-full blur-3xl top-0 right-0 animate-float"></div>
+				<div className="absolute w-96 h-96 bg-neon-purple-500/10 rounded-full blur-3xl bottom-0 left-0 animate-float delay-1000"></div>
+				<div className="absolute w-80 h-80 bg-neon-pink-500/10 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-float delay-500"></div>
 			</div>
 
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
-				<div className="text-center mb-16">
-					<h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-						Get In Touch
+				{/* Header */}
+				<div className="text-center mb-16 animate-fade-in">
+					<div className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-neon-purple-500/30 bg-neon-purple-500/10 backdrop-blur-sm">
+						<span className="w-2 h-2 bg-neon-purple-500 rounded-full animate-pulse"></span>
+						<span className="text-sm font-orbitron text-neon-purple-400 tracking-wider">LET'S CONNECT</span>
+					</div>
+
+					<h2 className="text-5xl md:text-6xl font-bold font-orbitron mb-4">
+						<span className="text-gradient">Get In Touch</span>
 					</h2>
-					<div className="w-32 h-1.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 mx-auto rounded-full"></div>
-					<p className="text-gray-300 mt-6 text-lg">
+
+					<div className="w-32 h-1.5 bg-gradient-to-r from-neon-cyan-500 via-neon-purple-500 to-neon-pink-500 mx-auto rounded-full shadow-neon-purple"></div>
+
+					<p className="text-gray-400 mt-6 text-lg">
 						Let's connect and discuss opportunities
 					</p>
 				</div>
 
+				{/* Contact Cards Grid */}
 				<div className="max-w-4xl mx-auto">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						{/* Email */}
-						<a
-							href="mailto:chethanmudhiraj3102@gmail.com"
-							className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20 transform hover:-translate-y-2 flex items-center gap-4"
-						>
-							<div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
-								<FaEnvelope className="w-6 h-6 text-white" />
-							</div>
-							<div>
-								<h3 className="font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">Email</h3>
-								<p className="text-gray-400 text-sm">chethanmudhiraj3102@gmail.com</p>
-							</div>
-						</a>
+						{contactMethods.map((method, idx) => (
+							<a
+								key={idx}
+								href={method.href}
+								target={method.href.startsWith('http') ? '_blank' : undefined}
+								rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+								className="group holographic-card rounded-2xl p-6 hover:shadow-glow-xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] flex items-center gap-4 animate-fade-in"
+								style={{ animationDelay: `${idx * 100}ms` }}
+							>
+								{/* Icon Container */}
+								<div className={`bg-gradient-to-br ${method.gradient} p-4 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+									<div className="text-white">
+										{method.icon}
+									</div>
+								</div>
 
-						{/* Phone */}
-						<a
-							href="tel:7032395245"
-							className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/20 transform hover:-translate-y-2 flex items-center gap-4"
-						>
-							<div className="bg-gradient-to-br from-green-500 to-emerald-600 p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
-								<FaPhone className="w-6 h-6 text-white" />
-							</div>
-							<div>
-								<h3 className="font-semibold text-white mb-1 group-hover:text-green-400 transition-colors duration-300">Phone</h3>
-								<p className="text-gray-400 text-sm">7032395245</p>
-							</div>
-						</a>
+								{/* Content */}
+								<div className="flex-1">
+									<h3 className={`font-semibold font-orbitron text-white mb-1 group-hover:text-neon-${method.hoverColor}-400 transition-colors duration-300`}>
+										{method.title}
+									</h3>
+									<p className="text-gray-400 text-sm break-all">
+										{method.value}
+									</p>
+								</div>
 
-						{/* LinkedIn */}
-						<a
-							href="https://linkedin.com/in/chethanmca2025"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20 transform hover:-translate-y-2 flex items-center gap-4"
-						>
-							<div className="bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
-								<FaLinkedin className="w-6 h-6 text-white" />
-							</div>
-							<div>
-								<h3 className="font-semibold text-white mb-1 group-hover:text-blue-400 transition-colors duration-300">LinkedIn</h3>
-								<p className="text-gray-400 text-sm">linkedin.com/in/chethanmca2025</p>
-							</div>
-						</a>
+								{/* Arrow Indicator */}
+								<div className="text-gray-600 group-hover:text-neon-purple-400 group-hover:translate-x-1 transition-all duration-300">
+									<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+									</svg>
+								</div>
 
-						{/* GitHub */}
-						<a
-							href="https://github.com/chethan31-dev"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20 transform hover:-translate-y-2 flex items-center gap-4"
-						>
-							<div className="bg-gradient-to-br from-purple-500 to-pink-600 p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
-								<FaGithub className="w-6 h-6 text-white" />
-							</div>
-							<div>
-								<h3 className="font-semibold text-white mb-1 group-hover:text-purple-400 transition-colors duration-300">GitHub</h3>
-								<p className="text-gray-400 text-sm">github.com/chethan31-dev</p>
-							</div>
-						</a>
+								{/* Glow Effect on Hover */}
+								<div className={`absolute inset-0 bg-gradient-to-r ${method.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+							</a>
+						))}
+					</div>
+
+					{/* Call to Action */}
+					<div className="mt-12 text-center holographic-card rounded-2xl p-8 animate-fade-in delay-500">
+						<p className="text-xl text-gray-300 mb-4">
+							<span className="text-neon-purple-400 font-semibold">Ready to collaborate?</span>
+						</p>
+						<p className="text-gray-400">
+							I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+						</p>
 					</div>
 				</div>
 			</div>
